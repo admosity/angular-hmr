@@ -9,7 +9,7 @@
     "src"
   ],
   "scripts": {
-    "prebuild": "rimraf dist",
+    "prebuild": "rimraf dist && mkdir dist",
     "build": "tsc || true",
     "postinstall": "npm run build",
     "typings": "typings",
