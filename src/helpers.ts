@@ -17,17 +17,13 @@ export function createNewHosts(cmps: any) {
     const components = cmps.map((componentNode: any) => {
       const newNode = document.createElement(componentNode.tagName);
       // display none
-      const currentDisplay = newNode.style.display;
-      newNode.style.display = 'none';
       const parentNode = componentNode.parentNode;
       parentNode.insertBefore(newNode, componentNode);
-      return { currentDisplay, newNode };
+      return { newNode, orginalCmp: componentNode };
     });
     return () => {
         components.forEach((cmp:any) => {
-            cmp.newNode.style.display = cmp.currentDisplay;
-            cmp.newNode = null;
-            cmp.currentDisplay = null;
+            cmp.orginalCmp.remove();
         });
     }
 }
